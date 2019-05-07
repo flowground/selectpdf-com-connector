@@ -1,0 +1,62 @@
+{
+    "title": "SelectPdf HTML To PDF",
+    "description": "SelectPdf HTML To PDF Online REST API is a professional solution that lets you create PDF from web pages and raw HTML code in your applications. The API is easy to use and the integration takes only a few lines of code.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/selectpdf.com/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://selectpdf.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "post_api2_convert": {
+            "main": "./lib/actions/post_api2_convert.js",
+            "title": "Performs a html to pdf conversion",
+            "description": "Converts provided HTML string or url to PDF",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/x-www-form-urlencoded": "application/x-www-form-urlencoded",
+                        "application/xml": "application/xml"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_api2_convert.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
